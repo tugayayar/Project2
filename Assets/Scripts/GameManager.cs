@@ -13,7 +13,19 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    [Header("Player Variables")]
+    [HideInInspector] public bool isPlayable;
+
     [Header("Stack Information Variables")]
-    GameObject currentStack;
-    GameObject nextStack;
+    public StackController currentStack;
+    public StackController nextStack;
+
+    [Header("Knifes")]
+    [SerializeField] Knife leftKnife;
+    [SerializeField] Knife rightKnife;
+
+    private void Start()
+    {
+        isPlayable = true;
+    }
 }
