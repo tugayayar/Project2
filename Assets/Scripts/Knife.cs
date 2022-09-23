@@ -18,6 +18,14 @@ public class Knife : MonoBehaviour
         Right
     }
 
+    [Header("Next Stack Components")]
+    Transform nextStack;
+    BoxCollider nextStackCol;
+
+    [Header("Knives Position Variables")]
+    float cuttedKnifeLocalXPos;
+    float nonCuttedKinefeLocalXPos;
+
     private void Start()
     {
         KnifeParentAdjuster(GameManager.Instance.currentStack.transform);
@@ -38,19 +46,27 @@ public class Knife : MonoBehaviour
         transform.parent = parent;
 
         //Needed Components
-        BoxCollider parentCollider = parent.GetComponent<BoxCollider>();
+        nextStack = GameManager.Instance.nextStack.transform;
+        nextStackCol = nextStack.GetComponent<BoxCollider>();
 
         //Change Local Positions
         if (knifeType == KnifeType.Left)
             transform.localPosition = LocalPosCalculater(parent.localScale, -parentCollider.size.x);
         else
             transform.localPosition = LocalPosCalculater(parent.localScale, parentCollider.size.x);
+
+        GameManager.Instance.KnivesActivator(false);
     }
 
     private Vector3 LocalPosCalculater(Vector3 parentLocalScale, float colliderXPos)
     {
         Vector3 desiredLocalPos = new Vector3(parentLocalScale.x * colliderXPos, 0f, parentLocalScale.z);
         return desiredLocalPos;
+    }
+
+    private float StackXSizeCalculator(float stackDefaultSize, float colliderXSize)
+    {
+        return colliderXSize * stackDefaultSize;
     }
 
     private void StartCutting()
@@ -86,7 +102,7 @@ public class Knife : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePosition;
         cuttedObjLow.layer = LayerMask.NameToLayer("Platform");
 
-        Destroy(cuttingObj);
+        AfterCutting();
     }
 
     private void CutRight()
@@ -105,6 +121,16 @@ public class Knife : MonoBehaviour
         cuttedObjLow.AddComponent<Rigidbody>();
         cuttedObjLow.layer = LayerMask.NameToLayer("Platform");
 
+        AfterCutting();
+    }
+
+    private void AfterCutting()
+    {
         Destroy(cuttingObj);
+        cuttingObj = null;
+        cuttingObjMat = null;
+
+        KnifeParentAdjuster(nextStack);
+        StackCreator.Instance.CreateNewStack(StackXSizeCalculator(nextStack.localScale.x, nextStackCol.size.x));
     }
 }

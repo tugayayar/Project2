@@ -28,4 +28,15 @@ public class GameManager : MonoBehaviour
     {
         isPlayable = true;
     }
+
+    public void CurrentStackAdjuster()
+    {
+        currentStack = nextStack;
+    }
+
+    public void KnivesActivator(bool isActive)
+    {
+        leftKnife.gameObject.SetActive(isActive);
+        rightKnife.gameObject.SetActive(isActive);
+    }
 }
