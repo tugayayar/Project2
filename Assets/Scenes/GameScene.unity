@@ -8451,6 +8451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4328396550275780344, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4328396550275780348, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -9822,6 +9826,10 @@ PrefabInstance:
     - target: {fileID: 4328396550275780344, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
       propertyPath: m_Name
       value: Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328396550275780344, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4328396550275780348, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
       propertyPath: m_RootOrder
