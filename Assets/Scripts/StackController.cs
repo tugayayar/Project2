@@ -35,6 +35,5 @@ public class StackController : MonoBehaviour
     {
         stackTween.Kill();
         stackTween = null;
-        GameManager.Instance.KnivesActivator(true);
     }
 }

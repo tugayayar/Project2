@@ -19,24 +19,40 @@ public class GameManager : MonoBehaviour
     [Header("Stack Information Variables")]
     public StackController currentStack;
     public StackController nextStack;
-
+    
     [Header("Knifes")]
     [SerializeField] Knife leftKnife;
     [SerializeField] Knife rightKnife;
+    private float knifeForwardLocalPos;
 
     private void Start()
     {
         isPlayable = true;
+        knifeForwardLocalPos = CalcKnifeForwardLocalPosValue();
     }
 
-    public void CurrentStackAdjuster()
+    public void CurrentStackAdjuster(StackController stack)
     {
-        currentStack = nextStack;
+        currentStack = stack;
     }
 
     public void KnivesActivator(bool isActive)
     {
         leftKnife.gameObject.SetActive(isActive);
         rightKnife.gameObject.SetActive(isActive);
+    }
+
+    private float CalcKnifeForwardLocalPosValue()
+    {
+        return StackCreator.Instance.GetStackForwardSize() * .5f;
+    }
+
+    public void KnifeLocalPosAdjuster(float xLocalPos)
+    {
+        Vector3 rightDesiredPos = new Vector3(xLocalPos, 0f, knifeForwardLocalPos);
+        Vector3 leftDesiredPos = new Vector3(-xLocalPos, 0f, knifeForwardLocalPos);
+        
+        leftKnife.transform.localPosition = leftDesiredPos;
+        rightKnife.transform.localPosition = rightDesiredPos;
     }
 }

@@ -15,6 +15,11 @@ public class StackCreator : MonoBehaviour
 
     [SerializeField] StackController stackPrefab;
 
+    public float GetStackForwardSize()
+    {
+        return stackPrefab.transform.localScale.z;
+    }
+
     public void CreateNewStack(float newScaleSize)
     {
         StackAdjuster(newScaleSize);
@@ -27,26 +32,27 @@ public class StackCreator : MonoBehaviour
 
     void StackAdjuster(float scale)
     {
-        GameManager.Instance.CurrentStackAdjuster();
+        GameManager.Instance.CurrentStackAdjuster(GameManager.Instance.nextStack);
 
         StackController newStack = CreateStack();
         GameManager.Instance.nextStack = newStack;
-        newStack.transform.position = NewStackPosCalc();
+        newStack.gameObject.SetActive(true);
 
-        Vector3 desiredScale = new Vector3(scale, 0, newStack.transform.localScale.z);
+        newStack.transform.position = NewStackPosCalc();
+        Vector3 desiredScale = new Vector3(scale, newStack.transform.localScale.y, newStack.transform.localScale.z);
         newStack.transform.localScale = desiredScale;
 
-        newStack.gameObject.SetActive(true);
+        
     }
 
     Vector3 NewStackPosCalc()
     {
-        return (GameManager.Instance.nextStack.transform.position + (Vector3.forward * 3f)) + RandomSide();
+        return (GameManager.Instance.currentStack.transform.position + (Vector3.forward * GetStackForwardSize()/*3f*/)) + RandomSide();
     }
 
     Vector3 RandomSide()
     {
         int rndNum = Random.Range(0, 2) * 2 - 1;
-        return Vector3.right * ((float)rndNum * 4f);
+        return Vector3.right * ((float)rndNum * (GetStackForwardSize() + 1f));
     }
 }
