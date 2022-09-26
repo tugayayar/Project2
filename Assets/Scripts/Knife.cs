@@ -29,8 +29,13 @@ public class Knife : MonoBehaviour
     //private void Start()
     //{
     //    //KnifeParentAdjuster(GameManager.Instance.currentStack.transform);
-        
+
     //}
+
+    private void Start()
+    {
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {

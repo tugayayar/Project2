@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
 
     public void KnivesActivator(bool isActive)
     {
-        leftKnife.gameObject.SetActive(isActive);
-        rightKnife.gameObject.SetActive(isActive);
+        leftKnife.enabled = isActive; //leftKnife.gameObject.SetActive(isActive);
+        rightKnife.enabled = isActive; //rightKnife.gameObject.SetActive(isActive);
     }
 
     private float CalcKnifeForwardLocalPosValue()
