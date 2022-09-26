@@ -42,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4328396550275780344}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78d3e10db886fe945beb8cbea954125c, type: 3}
   m_Name: 
@@ -51,6 +51,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   knifeType: 0
+  cutCollider: {fileID: 4328396550275780345}
 --- !u!33 &4328396550275780351
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -109,7 +110,7 @@ BoxCollider:
   m_GameObject: {fileID: 4328396550275780344}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

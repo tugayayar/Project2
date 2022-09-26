@@ -10,17 +10,18 @@ public class Knife : MonoBehaviour
     Material cuttingObjMat;
     GameObject cuttingObj;
 
-    [Header("Knife Types")]
+    [Header("Knife Variables")]
     public KnifeType knifeType;
     public enum KnifeType
     {
         Left,
         Right
     }
+    public BoxCollider cutCollider;
 
     [Header("Next Stack Components")]
-    Transform nextStack;
-    BoxCollider nextStackCol;
+    Transform currentStack;
+    BoxCollider currentStackCol;
 
     //[Header("Knives Position Variables")]
     //float cuttedKnifeLocalXPos;
@@ -44,6 +45,7 @@ public class Knife : MonoBehaviour
             cuttingObj = other.gameObject;
             cuttingObjMat = other.GetComponent<MeshRenderer>().material;
             StartCutting();
+            Debug.Log("La Neoliððððð " + transform.name);
         }
     }
 
@@ -152,10 +154,10 @@ public class Knife : MonoBehaviour
         //KnifeParentAdjuster(nextStack);
 
         //Needed Components
-        nextStack = GameManager.Instance.nextStack.transform;
-        nextStackCol = nextStack.GetComponent<BoxCollider>();
+        currentStack = GameManager.Instance.currentStack.transform;
+        currentStackCol = currentStack.GetComponent<BoxCollider>();
 
-        float stackSize = StackXSizeCalculator(nextStack.localScale.x, nextStackCol.size.x);
+        float stackSize = StackXSizeCalculator(currentStack.localScale.x, currentStackCol.size.x);
 
         GameManager.Instance.KnifeLocalPosAdjuster(stackSize);
         GameManager.Instance.KnivesActivator(false);
