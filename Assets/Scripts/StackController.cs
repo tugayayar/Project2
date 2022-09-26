@@ -8,12 +8,30 @@ public class StackController : MonoBehaviour
 {
     [Header("Stack Animation Variables")]
     [SerializeField] private float animSpeed = 1f;
+    [SerializeField] private float stackPositionLimit = 3.2f;
     Sequence stackTween;
     private Guid stackTweenId;
+    private float animStartPoint;
+    private float animEndPoint;
 
     private void OnEnable()
     {
+        AnimationPointAdjuster();
         StackAnimation();
+    }
+
+    private void AnimationPointAdjuster()
+    {
+        if (transform.position.x < 0)
+        {
+            animStartPoint = stackPositionLimit;
+            animEndPoint = -stackPositionLimit;
+        }
+        else
+        {
+            animStartPoint = -stackPositionLimit;
+            animEndPoint = stackPositionLimit;
+        }
     }
 
     private void StackAnimation()
@@ -22,8 +40,8 @@ public class StackController : MonoBehaviour
         {
             stackTween = DOTween.Sequence();
 
-            stackTween.Append(transform.DOMoveX(3.2f, animSpeed).SetEase(Ease.InQuart))
-                .Append(transform.DOMoveX(-3f, animSpeed).SetEase(Ease.InQuart))
+            stackTween.Append(transform.DOMoveX(animStartPoint, animSpeed).SetEase(Ease.InQuart))
+                .Append(transform.DOMoveX(animEndPoint, animSpeed).SetEase(Ease.InQuart))
                 .SetLoops(-1);
 
             stackTweenId = Guid.NewGuid();
