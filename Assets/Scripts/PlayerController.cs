@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     [Header("Needed Components")]
+    [SerializeField] private MovePointDisplacer movePointObjSC;
     private GameManager gameManagerSC;
-
+    
     [Header("Player Variables")]
     [SerializeField] private float nextStackMovingTimer = 2f;
 
@@ -40,10 +41,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private Vector3 GetNextPlatformPosition()
+    {
+        //for move point new positon
+        movePointObjSC.enabled = true;
+
+        return movePointObjSC.transform.position + (Vector3.up * .5f);
+    }
+
     public void GoNextPlatform()
     {
-        transform.DOMove(gameManagerSC.nextStack.transform.position + (Vector3.up * .5f), nextStackMovingTimer)
+        //MovePoint diye bir obje oluþtur
+        //MovePoint'i, Player'ýn yürüyeceði platforma parent olarak ayarla
+        //Platformun Box Collider'ýnýn, Center.x deðerini, MovePoint'in LocalPos.x'ine ata
+        //Sonra Player'ý, MovePoint'in World Position'ýnýna yolla
+
+        
+
+        transform.DOMove(GetNextPlatformPosition(), nextStackMovingTimer)
             .SetEase(Ease.Linear)
-            .OnComplete(()=> { gameManagerSC.isPlayable = true; });
+            .OnComplete(()=> 
+            { 
+                gameManagerSC.isPlayable = true;
+                movePointObjSC.enabled = false;
+            });
     }
 }
