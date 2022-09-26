@@ -51,13 +51,6 @@ public class PlayerController : MonoBehaviour
 
     public void GoNextPlatform()
     {
-        //MovePoint diye bir obje oluþtur
-        //MovePoint'i, Player'ýn yürüyeceði platforma parent olarak ayarla
-        //Platformun Box Collider'ýnýn, Center.x deðerini, MovePoint'in LocalPos.x'ine ata
-        //Sonra Player'ý, MovePoint'in World Position'ýnýna yolla
-
-        
-
         transform.DOMove(GetNextPlatformPosition(), nextStackMovingTimer)
             .SetEase(Ease.Linear)
             .OnComplete(()=> 

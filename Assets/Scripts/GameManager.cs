@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
 
     public void KnifeLocalPosAdjuster(float xLocalPos)
     {
-        Vector3 rightDesiredPos = new Vector3(xLocalPos, 0f, knifeForwardLocalPos);
-        Vector3 leftDesiredPos = new Vector3(-xLocalPos, 0f, knifeForwardLocalPos);
+        Vector3 rightDesiredPos = new Vector3(xLocalPos * .5f, 0f, knifeForwardLocalPos);
+        Vector3 leftDesiredPos = new Vector3(-xLocalPos * .5f, 0f, knifeForwardLocalPos);
         
         leftKnife.transform.localPosition = leftDesiredPos;
         rightKnife.transform.localPosition = rightDesiredPos;
