@@ -7,7 +7,7 @@ using System;
 public class StackController : MonoBehaviour
 {
     [Header("Stack Animation Variables")]
-    [SerializeField] private float animSpeed = 1f;
+    [SerializeField] private float animTime = 2f;
     [SerializeField] private float stackPositionLimit = 3.2f;
     Sequence stackTween;
     private Guid stackTweenId;
@@ -40,8 +40,8 @@ public class StackController : MonoBehaviour
         {
             stackTween = DOTween.Sequence();
 
-            stackTween.Append(transform.DOMoveX(animStartPoint, animSpeed).SetEase(Ease.InQuart))
-                .Append(transform.DOMoveX(animEndPoint, animSpeed).SetEase(Ease.InQuart))
+            stackTween.Append(transform.DOMoveX(animStartPoint, animTime).SetEase(Ease.InQuart))
+                .Append(transform.DOMoveX(animEndPoint, animTime).SetEase(Ease.InQuart))
                 .SetLoops(-1);
 
             stackTweenId = Guid.NewGuid();

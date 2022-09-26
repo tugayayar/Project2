@@ -53,6 +53,6 @@ public class StackCreator : MonoBehaviour
     Vector3 RandomSide()
     {
         int rndNum = Random.Range(0, 2) * 2 - 1;
-        return Vector3.right * ((float)rndNum * (GetStackForwardSize() + 1f));
+        return Vector3.right * ((float)rndNum * GetStackForwardSize());
     }
 }
