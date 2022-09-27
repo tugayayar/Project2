@@ -108,6 +108,7 @@ public class Knife : MonoBehaviour
         GameObject cuttedObjUp = cutted.CreateUpperHull(cuttingObj, cuttingObjMat);
         cuttedObjUp.AddComponent<BoxCollider>().isTrigger = false;
         cuttedObjUp.AddComponent<Rigidbody>();
+        StartCuttedObjectKillTimer(cuttedObjUp);
         cuttedObjUp.layer = LayerMask.NameToLayer("Platform");
 
         GameObject cuttedObjLow = cutted.CreateLowerHull(cuttingObj, cuttingObjMat);
@@ -140,6 +141,7 @@ public class Knife : MonoBehaviour
         GameObject cuttedObjLow = cutted.CreateLowerHull(cuttingObj, cuttingObjMat);
         cuttedObjLow.AddComponent<BoxCollider>().isTrigger = false;
         cuttedObjLow.AddComponent<Rigidbody>();
+        StartCuttedObjectKillTimer(cuttedObjLow);
         cuttedObjLow.layer = LayerMask.NameToLayer("Platform");
 
         AfterCutting();
@@ -163,5 +165,10 @@ public class Knife : MonoBehaviour
         GameManager.Instance.KnivesActivator(false);
         PlayerController.Instance.GoNextPlatform();
         StackCreator.Instance.CreateNewStack(stackSize);
+    }
+
+    private void StartCuttedObjectKillTimer(GameObject obj)
+    {
+        obj.AddComponent<CuttedObjectKiller>();
     }
 }
