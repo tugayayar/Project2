@@ -8,7 +8,7 @@ public class Knife : MonoBehaviour
     [Header("Cutting Stack Variables")]
     [SerializeField] LayerMask layer;
     Material cuttingObjMat;
-    GameObject cuttingObj;
+    [HideInInspector] public GameObject cuttingObj;
 
     [Header("Knife Variables")]
     public KnifeType knifeType;
@@ -35,6 +35,7 @@ public class Knife : MonoBehaviour
             cuttingObj = other.gameObject;
             cuttingObjMat = other.GetComponent<MeshRenderer>().material;
             StartCutting();
+            PlayerController.Instance.skillCheckSC.knifeCutCounter++;
         }
     }
 
@@ -106,12 +107,15 @@ public class Knife : MonoBehaviour
         AfterCutting();
     }
 
-    private void AfterCutting()
+    public void AfterCutting()
     {
-        Destroy(cuttingObj);
-        cuttingObj = null;
-        cuttingObjMat = null;
-
+        if (!PlayerController.Instance.skillCheckSC.isPlayerSkillSuccessfull)
+        {
+            Destroy(cuttingObj);
+            cuttingObj = null;
+            cuttingObjMat = null;
+        }
+        
         //Needed Components
         currentStack = GameManager.Instance.currentStack.transform;
         currentStackCol = currentStack.GetComponent<BoxCollider>();
@@ -122,6 +126,8 @@ public class Knife : MonoBehaviour
         GameManager.Instance.KnivesActivator(false);
         PlayerController.Instance.GoNextPlatform();
         StackCreator.Instance.CreateNewStack(stackSize);
+
+        PlayerController.Instance.skillCheckSC.isPlayerSkillSuccessfull = false;
     }
 
     private void StartCuttedObjectKillTimer(GameObject obj)

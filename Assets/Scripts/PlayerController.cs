@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     [Header("Needed Components")]
-    [SerializeField] private MovePointDisplacer movePointObjSC;
+    public MovePointDisplacer movePointObjSC;
     private GameManager gameManagerSC;
+    public SkillCheck skillCheckSC;
     
     [Header("Player Variables")]
     [SerializeField] private float nextStackMovingTimer = 2f;
@@ -35,9 +36,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && gameManagerSC.isPlayable)
         {
+            skillCheckSC.knifeCutCounter = 0;
             gameManagerSC.isPlayable = false;
             gameManagerSC.nextStack.KillStackAnimation();
             gameManagerSC.KnivesActivator(true);
+            StartCoroutine(skillCheckSC.CheckIsKnivesCutted());
         }
     }
 

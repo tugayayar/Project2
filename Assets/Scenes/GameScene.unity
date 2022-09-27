@@ -3169,6 +3169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 604125042}
   - component: {fileID: 604125043}
+  - component: {fileID: 604125044}
   m_Layer: 0
   m_Name: Chibi_Pos
   m_TagString: Untagged
@@ -3207,7 +3208,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePointObjSC: {fileID: 198050486}
+  skillCheckSC: {fileID: 604125044}
   nextStackMovingTimer: 0.5
+--- !u!114 &604125044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604125041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e102b6f305c81064c98cdd984df4a63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftKnifeSC: {fileID: 1790606958}
+  rightKnifeSC: {fileID: 1567368815}
+  isPlayerSkillSuccessfull: 0
+  knifeCutCounter: 0
 --- !u!1 &604831775
 GameObject:
   m_ObjectHideFlags: 0
@@ -9840,21 +9858,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife
       objectReference: {fileID: 0}
-    - target: {fileID: 4328396550275780344, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4328396550275780345, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4328396550275780348, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4328396550275780348, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.10000001
       objectReference: {fileID: 0}
     - target: {fileID: 4328396550275780348, guid: 685a25f8ee06d554db7cb50d6c313afd, type: 3}
       propertyPath: m_LocalPosition.x
