@@ -23,16 +23,6 @@ public class Knife : MonoBehaviour
     Transform currentStack;
     BoxCollider currentStackCol;
 
-    //[Header("Knives Position Variables")]
-    //float cuttedKnifeLocalXPos;
-    //float nonCuttedKinefeLocalXPos;
-
-    //private void Start()
-    //{
-    //    //KnifeParentAdjuster(GameManager.Instance.currentStack.transform);
-
-    //}
-
     private void Start()
     {
         
@@ -45,39 +35,8 @@ public class Knife : MonoBehaviour
             cuttingObj = other.gameObject;
             cuttingObjMat = other.GetComponent<MeshRenderer>().material;
             StartCutting();
-            Debug.Log("La Neoliððððð " + transform.name);
         }
     }
-
-    //public void KnifeParentAdjuster(Transform parent)
-    //{
-    //    transform.parent = parent;
-
-    //    //Needed Components
-    //    nextStack = GameManager.Instance.nextStack.transform;
-    //    nextStackCol = nextStack.GetComponent<BoxCollider>();
-
-    //    //Change Local Positions
-
-    //    //if (knifeType == KnifeType.Left)
-    //    //    transform.localPosition = LocalPosCalculater(parent.localScale, -parentCollider.size.x);
-    //    //else
-    //    //    transform.localPosition = LocalPosCalculater(parent.localScale, parentCollider.size.x);
-
-    //    GameManager.Instance.KnivesActivator(false);
-    //}
-
-    //private Vector3 LocalPosCalculater(Vector3 parentLocalScale, float colliderXPos)
-    //{
-    //    Vector3 desiredLocalPos = new Vector3(parentLocalScale.x * colliderXPos, 0f, parentLocalScale.z);
-    //    return desiredLocalPos;
-    //}
-
-    //private void KnifeLocalPosAdjuster(Transform knife, float xLocalPos)
-    //{
-    //    Vector3 desiredPos = new Vector3(xLocalPos, 0f, stackForwardSize);
-    //    knife.localPosition = desiredPos;
-    //}
 
     private float StackXSizeCalculator(float stackDefaultSize, float colliderXSize)
     {
@@ -152,8 +111,6 @@ public class Knife : MonoBehaviour
         Destroy(cuttingObj);
         cuttingObj = null;
         cuttingObjMat = null;
-
-        //KnifeParentAdjuster(nextStack);
 
         //Needed Components
         currentStack = GameManager.Instance.currentStack.transform;

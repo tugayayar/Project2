@@ -34,13 +34,12 @@ public class GameManager : MonoBehaviour
     public void CurrentStackAdjuster(StackController stack)
     {
         currentStack = stack;
-        Debug.Log("Yeni Current Stack: " + stack.name);
     }
 
     public void KnivesActivator(bool isActive)
     {
-        leftKnife.cutCollider.enabled = isActive; //leftKnife.gameObject.SetActive(isActive);
-        rightKnife.cutCollider.enabled = isActive; //rightKnife.gameObject.SetActive(isActive);
+        leftKnife.cutCollider.enabled = isActive;
+        rightKnife.cutCollider.enabled = isActive;
     }
 
     private float CalcKnifeForwardLocalPosValue()

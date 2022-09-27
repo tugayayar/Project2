@@ -32,8 +32,6 @@ public class StackCreator : MonoBehaviour
 
     void StackAdjuster(float scale)
     {
-        //GameManager.Instance.CurrentStackAdjuster(GameManager.Instance.nextStack);
-
         StackController newStack = CreateStack();
         GameManager.Instance.nextStack = newStack;
         newStack.gameObject.SetActive(true);
