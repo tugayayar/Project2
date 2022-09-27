@@ -55,6 +55,7 @@ public class SkillCheck : MonoBehaviour
         else
         {
             Debug.Log("BABA NE OLDU SANA BÖYLE BABBBAAA");//boþluktan aþaðý düþürüp oyunu bitir
+            PlayerController.Instance.Fail();
         }
     }
 }

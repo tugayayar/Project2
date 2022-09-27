@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public MovePointDisplacer movePointObjSC;
     private GameManager gameManagerSC;
     public SkillCheck skillCheckSC;
+    [SerializeField] private Rigidbody playerRB;
     
     [Header("Player Variables")]
     [SerializeField] private float nextStackMovingTimer = 2f;
@@ -61,5 +62,17 @@ public class PlayerController : MonoBehaviour
                 gameManagerSC.isPlayable = true;
                 movePointObjSC.enabled = false;
             });
+    }
+
+    public void Fail()
+    {
+        float desiredZPos = transform.position.z + 2f;
+        transform.DOMoveZ(desiredZPos, nextStackMovingTimer)
+        .SetEase(Ease.Linear)
+        .OnComplete(() =>
+        {
+            playerRB.constraints = RigidbodyConstraints.None;
+            //Fail olduktan sonra gerçekleþecek iþler
+        });
     }
 }
