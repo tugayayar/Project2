@@ -39,8 +39,6 @@ public class StackCreator : MonoBehaviour
         newStack.transform.position = NewStackPosCalc();
         Vector3 desiredScale = new Vector3(scale, newStack.transform.localScale.y, newStack.transform.localScale.z);
         newStack.transform.localScale = desiredScale;
-
-        
     }
 
     Vector3 NewStackPosCalc()
