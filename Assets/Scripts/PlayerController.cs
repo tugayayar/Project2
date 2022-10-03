@@ -66,7 +66,11 @@ public class PlayerController : MonoBehaviour
     public void GoNextPlatform(bool finish)
     {
         Vector3 desiredPos = new Vector3();
-        if (finish) desiredPos = GameManager.Instance.finish.position;
+        if (finish)
+        {
+            desiredPos = GameManager.Instance.finish.position;
+
+        }
         else desiredPos = GetNextPlatformPosition();
 
         transform.DOMove(desiredPos, nextStackMovingTimer)
@@ -75,7 +79,12 @@ public class PlayerController : MonoBehaviour
             { 
                 gameManagerSC.isPlayable = true;
                 movePointObjSC.enabled = false;
-                if (finish) AnimatonChanger(Animation.Dance);
+                if (finish)
+                {
+                    AnimatonChanger(Animation.Dance);
+                    UIManager.Instance.SuccessText(true);
+                    LevelManager.Instance.SaveLevelNumber();
+                }
             });
     }
 
@@ -88,7 +97,9 @@ public class PlayerController : MonoBehaviour
         {
             playerRB.constraints = RigidbodyConstraints.None;
             playerRB.isKinematic = false;
-            //Fail olduktan sonra gerçekleþecek iþler
+
+            UIManager.Instance.FailText(true);
+            StartCoroutine(LevelManager.Instance.NextLevel()); //ayný leveli bir daha yükleyecek
         });
     }
 
