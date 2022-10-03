@@ -18,6 +18,7 @@ public class Knife : MonoBehaviour
         Right
     }
     public BoxCollider cutCollider;
+    public BoxCollider skillCollider;
 
     [Header("Next Stack Components")]
     Transform currentStack;
@@ -123,7 +124,9 @@ public class Knife : MonoBehaviour
         float stackSize = StackXSizeCalculator(currentStack.localScale.x, currentStackCol.size.x);
 
         GameManager.Instance.KnifeLocalPosAdjuster(stackSize);
-        GameManager.Instance.KnivesActivator(false);
+        GameManager.Instance.KnivesDeActivator();//GameManager.Instance.KnivesActivator(false);
+
+
         if (!GameManager.Instance.IsPlayerGoingFinish())
         {
             PlayerController.Instance.GoNextPlatform(false);

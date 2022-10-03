@@ -20,11 +20,14 @@ public class GameManager : MonoBehaviour
     [Header("Stack Information Variables")]
     public StackController currentStack;
     public StackController nextStack;
-    
+
     [Header("Knifes")]
     [SerializeField] Knife leftKnife;
     [SerializeField] Knife rightKnife;
     private float knifeForwardLocalPos;
+
+    [Header("Skill Check")]
+    public int skillCheckCount;
 
     private void Start()
     {
@@ -37,10 +40,27 @@ public class GameManager : MonoBehaviour
         currentStack = stack;
     }
 
-    public void KnivesActivator(bool isActive)
+    public IEnumerator KnivesActivator()
     {
-        leftKnife.cutCollider.enabled = isActive;
-        rightKnife.cutCollider.enabled = isActive;
+        SkillCheckActivator(true);
+
+        yield return new WaitForSeconds(.02f);
+
+        leftKnife.cutCollider.enabled = true;
+        rightKnife.cutCollider.enabled = true;
+    }
+
+    public void KnivesDeActivator()
+    {
+        SkillCheckActivator(false);
+        leftKnife.cutCollider.enabled = false;
+        rightKnife.cutCollider.enabled = false;
+    }
+
+    public void SkillCheckActivator(bool isActive)
+    {
+        leftKnife.skillCollider.enabled = isActive;
+        rightKnife.skillCollider.enabled = isActive;
     }
 
     private float CalcKnifeForwardLocalPosValue()
@@ -64,7 +84,6 @@ public class GameManager : MonoBehaviour
 
     public bool IsPlayerGoingFinish()
     {
-        Debug.Log("Distance: " + CalculateDistance());
         if (CalculateDistance() < 31f)
             return true;
         return false;

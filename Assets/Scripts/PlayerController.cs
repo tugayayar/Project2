@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             skillCheckSC.knifeCutCounter = 0;
             gameManagerSC.isPlayable = false;
             gameManagerSC.nextStack.KillStackAnimation();
-            gameManagerSC.KnivesActivator(true);
+            StartCoroutine(gameManagerSC.KnivesActivator());
             StartCoroutine(skillCheckSC.CheckIsKnivesCutted());
         }
     }

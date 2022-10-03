@@ -6,6 +6,7 @@ public class SkillCheck : MonoBehaviour
 {
     public AudioSource source;
     public AudioClip clip;
+    public float pitchIncreaseValue = .5f;
     [SerializeField] private Knife leftKnifeSC;
     [SerializeField] private Knife rightKnifeSC;
     private float leftXPos;
@@ -17,45 +18,48 @@ public class SkillCheck : MonoBehaviour
     public IEnumerator CheckIsKnivesCutted()
     {
         yield return new WaitForSeconds(.1f);
-
+        CheckIsPlayerSkillSuccessfull();
         if (knifeCutCounter == 0) DoThis();
     }
 
-    //private void SkillRangeAdjuster() //yetenek aralýðý (X pozisyon cinsinden )
-    //{
-    //    leftXPos = leftKnifeSC.transform.position.x;
-    //    rightXPos = rightKnifeSC.transform.position.x;
-    //    //nextStackXPos = PlayerController.Instance.movePointObjSC.transform.position.x; //GameManager.Instance.nextStack.transform.position.x;
-    //    Debug.Log(leftXPos + " >= " + nextStackXPos + "  " + rightXPos);
-    //}
-
     private void CheckIsPlayerSkillSuccessfull()
     {
-        //SkillRangeAdjuster();
-
-        //bu karþýlaþtýrmayý hareýket eden stack üzerinden yapmalýsýn player'ýn posizyonu ile deðil!!!
-        //if (nextStackXPos >= leftXPos && nextStackXPos <= rightXPos) isPlayerSkillSuccessfull = true;
-        //else isPlayerSkillSuccessfull = false;
-
         if (knifeCutCounter == 2) isPlayerSkillSuccessfull = true;
+
+        if (GameManager.Instance.skillCheckCount == 2)
+        {
+            ShrillSound();
+            PlaySkillSound();
+        }
+        else SetPitchValue(1f);
+
+        GameManager.Instance.skillCheckCount = 0;
     }
 
     void DoThis() //bu isim deðiþecek
     {
-        CheckIsPlayerSkillSuccessfull();
+        if (!isPlayerSkillSuccessfull) PlayerController.Instance.Fail();
+    }
 
-        if (isPlayerSkillSuccessfull)
-        {
-            GameManager.Instance.CurrentStackAdjuster(GameManager.Instance.nextStack);
+    private float GetPitchValue()
+    {
+        return source.pitch;
+    }
 
-            leftKnifeSC.AfterCutting();
+    public void SetPitchValue(float value)
+    {
+        source.pitch = value;
+    }
 
-            Debug.Log("ADAM BAYAÐI ÝYÝ BAÞARILI! SES DENEME SES! ÇOCUKLARIMIZI PÝSTTEN ALALIM"); //play succes sound
-        }
-        else
-        {
-            Debug.Log("BABA NE OLDU SANA BÖYLE BABBBAAA");//boþluktan aþaðý düþürüp oyunu bitir
-            PlayerController.Instance.Fail();
-        }
+    private void ShrillSound()
+    {
+        float soundVal = GetPitchValue();
+        soundVal += pitchIncreaseValue;
+        SetPitchValue(soundVal);
+    }
+
+    private void PlaySkillSound()
+    {
+        source.PlayOneShot(clip);
     }
 }
