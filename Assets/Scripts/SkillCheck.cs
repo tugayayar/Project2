@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SkillCheck : MonoBehaviour
 {
+    public AudioSource source;
+    public AudioClip clip;
     [SerializeField] private Knife leftKnifeSC;
     [SerializeField] private Knife rightKnifeSC;
     private float leftXPos;
