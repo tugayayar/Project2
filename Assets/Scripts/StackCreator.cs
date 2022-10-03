@@ -34,11 +34,14 @@ public class StackCreator : MonoBehaviour
     {
         StackController newStack = CreateStack();
         GameManager.Instance.nextStack = newStack;
-        newStack.gameObject.SetActive(true);
+        //newStack.gameObject.SetActive(true);
 
         newStack.transform.position = NewStackPosCalc();
         Vector3 desiredScale = new Vector3(scale, newStack.transform.localScale.y, newStack.transform.localScale.z);
         newStack.transform.localScale = desiredScale;
+
+
+        newStack.gameObject.SetActive(true);
     }
 
     Vector3 NewStackPosCalc()
@@ -48,7 +51,14 @@ public class StackCreator : MonoBehaviour
 
     Vector3 RandomSide()
     {
-        int rndNum = Random.Range(0, 2) * 2 - 1;
+        int rndNum = Random.Range(0, 2) * 2 - 1;        
         return Vector3.right * ((float)rndNum * GetStackForwardSize());
     }
+
+    //IEnumerator StackActivatorDelay(StackController newStack)
+    //{
+    //    yield return new WaitForSeconds(2f);
+
+    //    newStack.gameObject.SetActive(true);
+    //}
 }

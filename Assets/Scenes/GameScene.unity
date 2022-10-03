@@ -6676,6 +6676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stack (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7465073831055737869, guid: 275b605a3959de044ac98bc7b4bfc31f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 275b605a3959de044ac98bc7b4bfc31f, type: 3}
 --- !u!114 &1285232434 stripped
@@ -12887,6 +12891,10 @@ PrefabInstance:
     - target: {fileID: 7465073831055737869, guid: 275b605a3959de044ac98bc7b4bfc31f, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465073831055737869, guid: 275b605a3959de044ac98bc7b4bfc31f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7544648755787081784, guid: 275b605a3959de044ac98bc7b4bfc31f, type: 3}
       propertyPath: m_Enabled
