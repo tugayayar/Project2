@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
             { 
                 gameManagerSC.isPlayable = true;
                 movePointObjSC.enabled = false;
-                AnimatonChanger(Animation.Dance);
+                if (finish) AnimatonChanger(Animation.Dance);
             });
     }
 
