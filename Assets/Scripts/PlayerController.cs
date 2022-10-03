@@ -19,9 +19,19 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManagerSC;
     public SkillCheck skillCheckSC;
     [SerializeField] private Rigidbody playerRB;
+    [SerializeField] Animator anim;
     
     [Header("Player Variables")]
     [SerializeField] private float nextStackMovingTimer = 2f;
+
+    [Header("Animations")]
+    public Animation animation;
+    public enum Animation
+    {
+        Run,
+        Dance
+    }
+    
 
     private void Start()
     {
@@ -65,6 +75,7 @@ public class PlayerController : MonoBehaviour
             { 
                 gameManagerSC.isPlayable = true;
                 movePointObjSC.enabled = false;
+                AnimatonChanger(Animation.Dance);
             });
     }
 
@@ -79,5 +90,18 @@ public class PlayerController : MonoBehaviour
             playerRB.isKinematic = false;
             //Fail olduktan sonra gerçekleþecek iþler
         });
+    }
+
+    public void AnimatonChanger(Animation changedAnim)
+    {
+        switch (changedAnim)
+        {
+            case Animation.Run:
+                anim.SetTrigger("Run");
+                break;
+            case Animation.Dance:
+                anim.SetTrigger("Dance");
+                break;
+        }
     }
 }

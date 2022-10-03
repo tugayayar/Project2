@@ -3168,6 +3168,7 @@ MonoBehaviour:
   movePointObjSC: {fileID: 198050486}
   skillCheckSC: {fileID: 604125044}
   playerRB: {fileID: 604125045}
+  anim: {fileID: 1251868881}
   nextStackMovingTimer: 0.5
 --- !u!114 &604125044
 MonoBehaviour:
@@ -6526,6 +6527,11 @@ Transform:
   m_Father: {fileID: 995571690}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1251868881 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1782327572533206788, guid: 8ebf841af362818409cf000d8f1a2345, type: 3}
+  m_PrefabInstance: {fileID: 585130342517064559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1267962959
 GameObject:
   m_ObjectHideFlags: 0
