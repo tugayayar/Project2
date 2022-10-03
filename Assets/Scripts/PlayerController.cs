@@ -53,9 +53,13 @@ public class PlayerController : MonoBehaviour
         return movePointObjSC.transform.position + (Vector3.up * .5f);
     }
 
-    public void GoNextPlatform()
+    public void GoNextPlatform(bool finish)
     {
-        transform.DOMove(GetNextPlatformPosition(), nextStackMovingTimer)
+        Vector3 desiredPos = new Vector3();
+        if (finish) desiredPos = GameManager.Instance.finish.position;
+        else desiredPos = GetNextPlatformPosition();
+
+        transform.DOMove(desiredPos, nextStackMovingTimer)
             .SetEase(Ease.Linear)
             .OnComplete(()=> 
             { 
@@ -72,6 +76,7 @@ public class PlayerController : MonoBehaviour
         .OnComplete(() =>
         {
             playerRB.constraints = RigidbodyConstraints.None;
+            playerRB.isKinematic = false;
             //Fail olduktan sonra gerçekleþecek iþler
         });
     }

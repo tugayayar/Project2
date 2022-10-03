@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Variables")]
     [HideInInspector] public bool isPlayable;
+    public Transform finish;
 
     [Header("Stack Information Variables")]
     public StackController currentStack;
@@ -54,5 +55,18 @@ public class GameManager : MonoBehaviour
         
         leftKnife.transform.localPosition = leftDesiredPos;
         rightKnife.transform.localPosition = rightDesiredPos;
+    }
+
+    private float CalculateDistance()
+    {
+        return (finish.position - PlayerController.Instance.transform.position).sqrMagnitude;
+    }
+
+    public bool IsPlayerGoingFinish()
+    {
+        Debug.Log("Distance: " + CalculateDistance());
+        if (CalculateDistance() < 31f)
+            return true;
+        return false;
     }
 }

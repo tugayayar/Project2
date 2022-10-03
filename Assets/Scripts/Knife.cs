@@ -124,9 +124,13 @@ public class Knife : MonoBehaviour
 
         GameManager.Instance.KnifeLocalPosAdjuster(stackSize);
         GameManager.Instance.KnivesActivator(false);
-        PlayerController.Instance.GoNextPlatform();
-        StackCreator.Instance.CreateNewStack(stackSize);
-
+        if (!GameManager.Instance.IsPlayerGoingFinish())
+        {
+            PlayerController.Instance.GoNextPlatform(false);
+            StackCreator.Instance.CreateNewStack(stackSize);
+        }
+        else
+            PlayerController.Instance.GoNextPlatform(true);
         PlayerController.Instance.skillCheckSC.isPlayerSkillSuccessfull = false;
     }
 

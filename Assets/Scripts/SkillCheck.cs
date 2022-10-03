@@ -15,8 +15,6 @@ public class SkillCheck : MonoBehaviour
     public IEnumerator CheckIsKnivesCutted()
     {
         yield return new WaitForSeconds(.1f);
-        Debug.Log(GameManager.Instance.currentStack.name + "  -  " + GameManager.Instance.nextStack.name);
-        Debug.Log(knifeCutCounter + " -> agam bana geliþi budur");
 
         if (knifeCutCounter == 0) DoThis();
     }
